@@ -1,0 +1,82 @@
+﻿@{
+    ViewData["Title"] = "Login";
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela Principal</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .top-bar {
+            background-color: #F0F0F0;
+            color: white;
+            text-align: center;
+            padding: 1em;
+            margin: 0 auto;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .box {
+            width: 24%;
+            display: inline-block;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #FFA396; 
+            text-align: left;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .box img {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            top: 10px;
+            right: 10px; 
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top-bar">
+        <div class="container">
+            <div class="box">
+                <img src="~/img/bank.png" alt="icone de um banco">
+                <div>Saldo Atual</div>
+                <div>R$ 10,00</div>
+            </div>
+            <div class="box">
+                <img src="~/img/revenue.png" alt="Imagem 2">
+                <div>Receitas</div>
+                <div>R$ 15,00</div>
+            </div>
+            <div class="box">
+                <img src="~/img/expense.png" alt="Imagem 3">
+                <div>Despesas</div>
+                <div>R$ 20,00</div>
+            </div>
+            <div class="box">
+                <img src="~/img/atm-card.png" alt="Imagem 4">
+                <div>Cartão de Credito</div>
+                <div>R$ 25,00</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
