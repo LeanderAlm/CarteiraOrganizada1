@@ -69,26 +69,51 @@
         }
 </style>
 
-<div class="container">
-    <div class="left-side">
-        <img src="~/img/wallet.png" alt="Wallet Image" style="width: 400px; height: 400px;">
-    </div>
+<!DOCTYPE html>
+<html lang="en">
 
-    <div class="right-side">
-        <h3 class="login-title">Login</h3>
-        <div class="login-form">
-            <div style="margin-bottom: 15px;">
-                <input type="text" id="txtUsername" placeholder="Digite seu nome de usuário" class="login-input" />
-            </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
 
-            <div style="margin-bottom: 15px;">
-                <input type="password" id="txtPassword" placeholder="Digite sua senha" class="login-input" />
-            </div>
+<body>
+    <div class="container">
+        <div class="left-side">
+            <img src="~/img/wallet.png" alt="Wallet Image" style="width: 400px; height: 400px;">
+        </div>
 
-            <div>
-                <input type="submit" value="Login" class="login-button" id="btnLogin" />
+        <div class="right-side">
+            <h3 class="login-title">Login</h3>
+            <div class="login-form">
+                <div style="margin-bottom: 15px;">
+                    <input type="text" id="txtUsername" placeholder="Digite seu nome de usuário" class="login-input" />
+                </div>
+
+                <div style="margin-bottom: 15px;">
+                    <input type="password" id="txtPassword" placeholder="Digite sua senha" class="login-input" />
+                </div>
+
+                <div>
+                    <button type="button" class="login-button" id="btnLogin">Login</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
+    <script>
+        document.getElementById("btnLogin").addEventListener("click", function () {
+            var username = document.getElementById("txtUsername").value;
+            var password = document.getElementById("txtPassword").value;
+
+            if (username === "adm" && password === "123456") {
+                window.location.href = "/Home/Privacy";
+            } else {
+                alert("Senha errada. Tente novamente.");
+            }
+        });
+    </script>
+</body>
+
+</html>
