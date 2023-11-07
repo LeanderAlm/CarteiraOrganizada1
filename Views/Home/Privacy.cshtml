@@ -35,7 +35,7 @@
         .containerMain {
             display: flex;
             justify-content: space-between;
-            padding: 10%;
+            padding-top: 10%;
         }
 
         .containerLeft,
@@ -74,6 +74,21 @@
             text-overflow: ellipsis;
             white-space: nowrap;}
 
+        #containerSalario {
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+        }
+
+        .divSalario {
+            display: flex;
+            justify-content: space-around;
+            width: 100%; 
+        }
+
+
+
+
           #editarValores {
             background-color: #F8E4E3;
             border-radius: 5px;
@@ -93,23 +108,23 @@
         <div class="container">
             <div class="box">
                 <img src="~/img/bank.png" alt="icone de um banco">
-                <div>Saldo Atual</div>
-                <div>R$ 10,00</div>
+                <div class="saldoTexto">Saldo Atual</div>
+                <div class="saldoValor">R$ 00,00</div>
             </div>
             <div class="box">
                 <img src="~/img/revenue.png" alt="Imagem 2">
-                <div>Receitas</div>
-                <div>R$ 15,00</div>
+                <div class="receitaTexto">Receitas</div>
+                <div class="receitaValor">R$ 00,00</div>
             </div>
             <div class="box">
                 <img src="~/img/expense.png" alt="Imagem 3">
-                <div>Despesas</div>
-                <div>R$ 20,00</div>
+                <div class="despesaTexto">Despesas</div>
+                <div class="despesaValor">R$ 00,00</div>
             </div>
             <div class="box">
                 <img src="~/img/atm-card.png" alt="Imagem 4">
-                <div>Cartão de Crédito</div>
-                <div>R$ 25,00</div>
+                <div class="cartaoTexto">Cartão de Crédito</div>
+                <div class="cartaoValor">R$ 00,00</div>
             </div>
         </div>
     </div>
@@ -119,20 +134,42 @@
     <div class="containerMain">
        
         <div class="containerLeft">
-                <h4>Renda Ativa</h4>
-                <p id="salario">Salário           R$0,00</p>
+               
+                    <h4 id="tituloSalario">Renda Ativa</h4>
+                    <div class="divSalario" >
+                        <p id="salario">Salário</p> <p id="itemSalario" class="alterarBtn"> R$,00 </p>
+                    </div>
+
                 <h4>Saldo em Banco</h4>
-                <p id="bradesco">Bradesco          R$0,00</p>
-                <p id="nubank">Nubank          R$0,00</p>
-                <p id="neon">Neon         R$0,00</p>
+                    <div class="divSalario">
+                        <p id="Bradesco">Bradesco</p> <p id="itemBradesco" class="alterarBtn"> R$0,00 </p>
+                    </div>
                 
+                <div class="divSalario">
+                        <p id="Nubank">Nubank</p> <p id="itemNubank" class="alterarBtn"> R$0,00 </p>
+                    </div>
+                
+                <div class="divSalario">
+                        <p id="Neon">Neon</p> <p id="itemNeon" class="alterarBtn"> R$,00 </p>
+                    </div>
             </div>
             <div class="containerRight">
                 <h4>Despesa por categoria</h4>
-                <p id="moradia">Moradia           R$0,00</p>
-                <p id="estudos">Estudos           R$0,00</p>
-                <p id="lazer">Lazer           R$0,00</p>
-                <p id="saude">Saúde           R$0,00</p>
+                     <div class="divSalario">
+                        <p id="moradia">Moradia</p> <p id="itemMoradia" class="alterarBtn"> R$,00 </p>
+                    </div>
+
+                     <div class="divSalario">
+                        <p id="estudos">Estudos</p> <p id="itemEstudos" class="alterarBtn"> R$,00 </p>
+                    </div>
+
+                     <div class="divSalario">
+                        <p id="lazer">Lazer</p> <p id="itemSalario" class="alterarBtn"> R$,00 </p>
+                    </div>
+
+                     <div class="divSalario">
+                        <p id="saude">Saúde</p> <p id="itemSAude" class="alterarBtn"> R$,00 </p>
+                    </div>
             
             </div>
             
@@ -140,36 +177,63 @@
 
         <button id="editarValores">Editar Valores</button>
     </div>
+
+
+
+    <script>
+    const botaoEditar = document.getElementById('editarValores');
+    const salarioCampo = document.getElementById('itemSalario');
+    const bradescoCampo = document.getElementById('itemBradesco');
+    const saldoValor = document.querySelector('.saldoValor');
+
+    botaoEditar.addEventListener('click', function () {
+        const salario = parseFloat(salarioCampo.textContent.trim().split('R$')[1].trim().replace(',', '.'));
+        const bradesco = parseFloat(bradescoCampo.textContent.trim().split('R$')[1].trim().replace(',', '.'));
+
+        const inputSalario = document.createElement('input');
+        inputSalario.type = 'text';
+        inputSalario.value = salario;
+        inputSalario.style.width = '80px';
+        inputSalario.style.marginRight = '10px';
+
+        const inputBradesco = document.createElement('input');
+        inputBradesco.type = 'text';
+        inputBradesco.value = bradesco;
+        inputBradesco.style.width = '80px';
+        inputBradesco.style.marginRight = '10px';
+
+        salarioCampo.innerHTML = 'R$ ';
+        salarioCampo.appendChild(inputSalario);
+
+        bradescoCampo.innerHTML = 'R$ ';
+        bradescoCampo.appendChild(inputBradesco);
+
+        const updateSaldoValor = function () {
+            const novoSalario = parseFloat(inputSalario.value.replace(',', '.'));
+            const novoBradesco = parseFloat(inputBradesco.value.replace(',', '.'));
+            const saldoAtual = novoSalario - novoBradesco;
+            saldoValor.textContent = `R$ ${saldoAtual.toFixed(2)}`;
+        };
+
+        inputSalario.addEventListener('keyup', function (event) {
+            if (event.key === 'Enter') {
+                updateSaldoValor();
+            }
+        });
+
+        inputBradesco.addEventListener('keyup', function (event) {
+            if (event.key === 'Enter') {
+                updateSaldoValor();
+            }
+        });
+    });
+
+    </script>
 </body>
 
 </html>
 
 
-<script>
-    const paragrafos = document.querySelectorAll('.containerMain p');
-    const botaoEditar = document.getElementById('editarValores');
-    
-    botaoEditar.addEventListener('click', function() {
-        paragrafos.forEach(paragrafo => {
-            const textoOriginal = paragrafo.textContent.trim().split('R$')[1].trim();
-            const input = document.createElement('input');
-            input.type = 'text';
-            input.value = textoOriginal;
-            input.style.width = '80px';
-            input.style.marginRight = '10px';
-            
-            paragrafo.innerHTML = 'R$ ';
-            paragrafo.appendChild(input);
-            
-            input.addEventListener('keyup', function(event) {
-                if (event.key === 'Enter') {
-                    const novoValor = input.value.trim();
-                    const novoTexto = `R$ ${novoValor}`;
-                    paragrafo.textContent = novoTexto;
-                }
-            });
-        });
-        botaoEditar.style.display = 'none';
-    });
-</script>
+
+
 
